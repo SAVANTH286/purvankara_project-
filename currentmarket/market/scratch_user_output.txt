@@ -1,0 +1,1 @@
+{"intent":"project_blind_spot_revenue_loss","agents":["scenario_tool"],"tools":[],"parameters":{"micro_market":"Kanakapura Road","property_segment":null,"bhk":null,"units":300,"price_per_sqft":6500},"clarification_needed":true,"clarification_question":"Which BHK configuration should the 300-unit Blind Spot scenario use?"}

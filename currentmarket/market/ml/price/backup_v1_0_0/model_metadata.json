@@ -1,0 +1,22 @@
+{
+  "model_name": "Project Price Prediction Regressor",
+  "model_version": "v1.0.0-gbr",
+  "algorithm": "GradientBoostingRegressor",
+  "features": [
+    "units",
+    "bhk",
+    "sold_pct",
+    "is_luxury",
+    "is_premium",
+    "is_mid",
+    "zone_code"
+  ],
+  "dataset_size": 30,
+  "evaluation_metrics": {
+    "MAE_INR_sqft": 52.2,
+    "RMSE_INR_sqft": 66.6,
+    "R2_Score": 0.9996
+  },
+  "target": "price_per_sqft",
+  "unit": "INR / sq.ft"
+}

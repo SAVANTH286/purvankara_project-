@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PURAVANKARA AI</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-white text-slate-900 min-h-screen flex flex-col font-sans antialiased selection:bg-amber-200 selection:text-slate-950">
+
+  <!-- Top Header Navigation -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-40 px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="h-9 w-9 rounded-lg bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center shadow-lg shadow-amber-500/20 font-bold text-slate-950 text-lg">
+        P
+      </div>
+      <div>
+        <h1 class="font-bold text-base tracking-tight text-slate-900">PURAVANKARA AI</h1>
+        <p class="text-[11px] text-slate-500">Decision Intelligence & Copilot</p>
+      </div>
+    </div>
+
+    <!-- Mode Switcher Tabs (DSS vs Copilot) -->
+    <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
+      <button id="btn-mode-dss" class="mode-tab-btn active px-4 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2 bg-amber-500 text-slate-950 shadow-md">
+        <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+        <span>Project Decision</span>
+      </button>
+      <button id="btn-mode-copilot" class="mode-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2 text-slate-500 hover:text-slate-900">
+        <i data-lucide="bot" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span>AI Copilot</span>
+      </button>
+    </div>
+
+    <!-- Navigation Modals & Online Status -->
+    <div class="flex items-center gap-2.5">
+      <button id="btn-view-city-map" class="text-xs font-medium px-3 py-1.5 rounded-md bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-400 transition flex items-center gap-1.5 border border-emerald-800/60 shadow-sm">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
+        <span>Map & Amenities</span>
+      </button>
+
+      <button id="btn-view-city" class="text-xs font-medium px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5 border border-slate-700">
+        <i data-lucide="building-2" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span>City Profile</span>
+      </button>
+
+      <button id="btn-view-markets" class="text-xs font-medium px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5 border border-slate-700">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-400"></i>
+        <span>Micro-Markets</span>
+      </button>
+
+      <div class="h-4 w-px bg-slate-800"></div>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- VIEW 1: DSS (Decision Support System)                    -->
+  <!-- ======================================================== -->
+  <main id="dss-view" class="flex-1 p-6 max-w-[1700px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- LEFT COLUMN: Project Evaluation Form (4 cols) -->
+    <section class="lg:col-span-4 flex flex-col gap-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-xl flex flex-col gap-4">
+        
+        <!-- Form Header -->
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-2">
+            <i data-lucide="file-spreadsheet" class="w-5 h-5 text-amber-400"></i>
+            <h2 class="font-semibold text-sm text-white uppercase tracking-wider">Project Details</h2>
+          </div>
+        </div>
+
+        <!-- Demo Presets -->
+        <div>
+          <label class="text-[11px] text-slate-400 font-medium uppercase tracking-wider block mb-1.5">Examples</label>
+          <div class="grid grid-cols-3 gap-1.5">
+            <button type="button" class="preset-btn text-[11px] py-1.5 px-2 rounded bg-slate-800 hover:bg-amber-600/20 hover:text-amber-300 border border-slate-700 transition text-center truncate" data-preset="kanakapura">
+              Kanakapura 3BHK
+            </button>
+            <button type="button" class="preset-btn text-[11px] py-1.5 px-2 rounded bg-slate-800 hover:bg-sky-600/20 hover:text-sky-300 border border-slate-700 transition text-center truncate" data-preset="bagalur">
+              Bagalur Pilot
+            </button>
+            <button type="button" class="preset-btn text-[11px] py-1.5 px-2 rounded bg-slate-800 hover:bg-emerald-600/20 hover:text-emerald-300 border border-slate-700 transition text-center truncate" data-preset="whitefield">
+              Whitefield Luxury
+            </button>
+          </div>
+        </div>
+
+        <!-- Form Elements -->
+        <form id="eval-form" class="flex flex-col gap-3.5">
+          <!-- Project Name & Developer -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Project Name</label>
+              <input type="text" id="project_name" name="project_name" required value="Purva Kanakapura Grandeur"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Developer</label>
+              <input type="text" id="developer" name="developer" required value="Puravankara"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition" />
+            </div>
+          </div>
+
+          <!-- Micro-Market & Location -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Micro-Market</label>
+              <select id="micro_market" name="micro_market" required
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition">
+                <option value="Kanakapura Road" selected>Kanakapura Road (South)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Location / Landmark</label>
+              <input type="text" id="location" name="location" required value="Kanakapura Road"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition" />
+            </div>
+          </div>
+
+          <!-- Selected Map Coordinates & Pin on Map Trigger -->
+          <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-950/70 border border-slate-800 text-xs">
+            <div class="flex items-center gap-2">
+              <i data-lucide="crosshair" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+              <div>
+                <span class="text-[10px] text-slate-400 block">Project Location</span>
+                <span id="form-coords-display" class="font-mono text-[11px] text-emerald-400 font-bold">12.8718, 77.5458</span>
+                <input type="hidden" id="project_latitude" name="latitude" value="12.8718" />
+                <input type="hidden" id="project_longitude" name="longitude" value="77.5458" />
+              </div>
+            </div>
+            <button type="button" id="btn-open-pin-map" class="px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-amber-400 hover:text-amber-300 transition text-[11px] font-semibold flex items-center gap-1.5 border border-slate-700 shadow-sm">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+              <span>Set on Map</span>
+            </button>
+          </div>
+
+          <!-- Segment & Property Type -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Property Segment</label>
+              <select id="property_segment" name="property_segment"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition">
+                <option value="Mid" selected>Mid Segment</option>
+                <option value="Mid-High">Mid-High / Premium</option>
+                <option value="High-end / Luxury">High-end / Luxury</option>
+                <option value="Affordable">Affordable</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Property Type</label>
+              <select id="property_type" name="property_type"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition">
+                <option value="Residential" selected>Residential Apartment</option>
+                <option value="Township">Integrated Township</option>
+                <option value="Plotted">Plotted Development</option>
+                <option value="Villa">Row House / Villa</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Realization ₹/sqft & Units -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Proposed Price (₹ / sq.ft)</label>
+              <input type="number" id="price_per_sqft" name="price_per_sqft" required value="6500" min="2000" step="50"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition font-mono" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Planned Units</label>
+              <input type="number" id="units" name="units" required value="300" min="10" step="10"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition font-mono" />
+            </div>
+          </div>
+
+          <!-- BHK & Expected Launch Date -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Target Configuration</label>
+              <select id="bhk" name="bhk"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition">
+                <option value="1BHK">1 BHK</option>
+                <option value="2BHK">2 BHK</option>
+                <option value="3BHK" selected>3 BHK</option>
+                <option value="4BHK">4 BHK</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Target Launch Date</label>
+              <input type="date" id="launch_date" name="launch_date" value="2026-10-01"
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 transition" />
+            </div>
+          </div>
+
+          <!-- Optional Cost Inputs (Overrides) -->
+          <div class="border border-slate-800/80 rounded-lg p-3 bg-slate-950/50">
+            <span class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Optional Costs</span>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[10px] text-slate-400 mb-0.5">Construction ₹/sqft</label>
+                <input type="number" id="construction_cost_per_sqft" placeholder="e.g. 3400"
+                  class="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white font-mono" />
+              </div>
+              <div>
+                <label class="block text-[10px] text-slate-400 mb-0.5">Land Cost ₹/sqft</label>
+                <input type="number" id="land_cost_per_sqft" placeholder="e.g. 1625"
+                  class="w-full bg-slate-900 border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white font-mono" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Buyer Intelligence Toggle -->
+          <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800/80 flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-medium text-slate-200">Include Buyer Fit</span>
+
+            </div>
+            <input type="checkbox" id="include_buyer_intelligence" name="include_buyer_intelligence" checked
+              class="w-4 h-4 accent-amber-500 rounded cursor-pointer" />
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="btn-submit"
+            class="mt-2 w-full py-3 px-4 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/25 transition flex items-center justify-center gap-2">
+            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+            <span>Evaluate Project</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Methodology Callout -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-[11px] text-slate-400 flex items-center gap-2">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+        <span>Results are based on available verified data. Missing data is shown explicitly.</span>
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN: Decision Dashboard & Evidence Cards (8 cols) -->
+    <section class="lg:col-span-8 flex flex-col gap-5" id="dashboard-container">
+
+      <!-- Empty State -->
+      <div id="empty-state" class="h-full min-h-[500px] border border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center p-12 text-center bg-white">
+        <div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center mb-4 text-amber-600">
+          <i data-lucide="cpu" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-base font-semibold text-slate-900 mb-1">Ready to evaluate a project</h3>
+        <p class="text-xs text-slate-500 max-w-md mb-6">
+          Enter the project details and click <span class="text-amber-400 font-medium">Evaluate Project</span>.
+        </p>
+        <button id="btn-quick-run" class="text-xs px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>Run Kanakapura Road Evaluation</span>
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading-state" class="hidden min-h-[500px] border border-slate-200 rounded-2xl flex flex-col items-center justify-center p-12 text-center bg-white">
+        <div class="w-14 h-14 rounded-full border-4 border-amber-100 border-t-amber-500 animate-spin mb-4"></div>
+        <h3 class="text-base font-semibold text-slate-900 mb-1">Analysing project...</h3>
+        <p class="text-xs text-slate-500" id="loading-agent-status">Market, competition, buyer fit and risk are being evaluated.</p>
+      </div>
+
+      <!-- Evaluation Result Container -->
+      <div id="result-content" class="hidden flex flex-col gap-5">
+
+        <!-- 1. Executive Verdict Hero Banner -->
+        <div id="decision-hero" class="border rounded-2xl p-6 relative overflow-hidden shadow-2xl transition-all">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start gap-4">
+              <div id="verdict-icon-container" class="w-14 h-14 rounded-xl flex items-center justify-center text-3xl font-black shadow-lg">
+                <!-- Icon inserted by JS -->
+              </div>
+              <div>
+                <div class="flex items-center gap-2 mb-1 flex-wrap">
+                  <span id="verdict-badge" class="px-3 py-1 rounded-md text-xs font-extrabold uppercase tracking-wider">
+                    <!-- LAUNCH / HOLD / NO-LAUNCH -->
+                  </span>
+                  <span id="provisional-pill" class="hidden px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase tracking-wide">
+                    ⚠ Provisional Assessment
+                  </span>
+                  <span class="text-xs text-slate-400 font-medium ml-2">Evidence Coverage: <span id="evidence-coverage-pct" class="font-bold text-emerald-400 font-mono">--%</span></span>
+                </div>
+                <h3 id="evaluated-project-title" class="text-lg font-bold text-white tracking-tight">--</h3>
+                <p id="executive-summary" class="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+                  --
+                </p>
+                <div id="provisional-reasons-box" class="hidden mt-2 p-2 rounded bg-amber-950/40 border border-amber-800/40 text-[11px] text-amber-300">
+                  <!-- Dynamic provisional warnings -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk Meter Scorecard Widget -->
+            <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3.5 min-w-[220px] flex flex-col gap-2">
+              <div class="flex justify-between items-center text-xs">
+                <span class="text-slate-400">Composite Risk Index</span>
+                <span id="risk-score-val" class="font-bold font-mono">--/100</span>
+              </div>
+              <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div id="risk-progress-bar" class="h-full rounded-full transition-all duration-500" style="width: 30%"></div>
+              </div>
+              <span id="risk-level-badge" class="text-[11px] font-semibold text-right">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1B. ML PREDICTION CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="ml-prediction-cards-container">
+          <!-- ML Card 1: Expected Absorption -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-900/40 shadow-lg flex flex-col justify-between">
+            <div>
+              <h4 class="text-xs font-semibold text-slate-400 mb-1">Expected Absorption</h4>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span id="ml-market-absorption-val" class="text-2xl font-extrabold text-emerald-400 font-mono">--%</span>
+                <span id="ml-market-absorbed-units" class="text-xs text-slate-400 font-mono">(-- units)</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2">Predicted share of planned units sold within the first year.</p>
+            </div>
+            <details class="mt-3 pt-2 border-t border-slate-800/80 text-[10px] text-slate-500">
+              <summary class="cursor-pointer hover:text-slate-300 transition">Model Details</summary>
+              <div class="mt-1.5 space-y-0.5">
+                <div>Model: RandomForestRegressor</div>
+                <div>R²: 0.9763</div>
+                <div>MAE: 2.40%</div>
+              </div>
+            </details>
+          </div>
+
+          <!-- ML Card 2: Expected Launch Price -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-sky-900/40 shadow-lg flex flex-col justify-between">
+            <div>
+              <h4 class="text-xs font-semibold text-slate-400 mb-1">Expected Launch Price</h4>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span id="ml-price-val" class="text-2xl font-extrabold text-sky-400 font-mono">₹--</span>
+                <span class="text-xs text-slate-400">/ sq.ft</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-2">Market-clearing price estimated from comparable projects.</p>
+            </div>
+            <details class="mt-3 pt-2 border-t border-slate-800/80 text-[10px] text-slate-500">
+              <summary class="cursor-pointer hover:text-slate-300 transition">Model Details</summary>
+              <div class="mt-1.5 space-y-0.5">
+                <div>Model: GradientBoosting</div>
+                <div>R²: 0.9996</div>
+                <div>MAE: ₹52.2</div>
+              </div>
+            </details>
+          </div>
+
+          <!-- ML Card 3: Buyer Fit -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-purple-900/40 shadow-lg flex flex-col justify-between">
+            <div>
+              <h4 class="text-xs font-semibold text-slate-400 mb-1">Buyer Fit</h4>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span id="ml-buyer-segment-val" class="text-base font-extrabold text-purple-400 truncate">Corporate Professionals</span>
+              </div>
+              <span id="ml-buyer-income-val" class="text-[11px] text-slate-500 block mt-1">Income: insufficient disclosure</span>
+              <span id="ml-buyer-fit-pct" class="text-[11px] text-purple-400 font-mono font-bold block mt-0.5">Historical alignment</span>
+            </div>
+            <details class="mt-3 pt-2 border-t border-slate-800/80 text-[10px] text-slate-500">
+              <summary class="cursor-pointer hover:text-slate-300 transition">Buyer Model Details</summary>
+              <div class="mt-1.5 space-y-0.5">
+                <div>Model: KMeans (k=5)</div>
+                <div>Silhouette: 0.7209</div>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- 2. Explainable "Why" Rationale Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Positive Drivers -->
+          <div class="bg-slate-900/80 border border-emerald-900/40 rounded-xl p-4 flex flex-col gap-2.5">
+            <div class="flex items-center gap-1.5 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+              <span>Positive Tailwinds</span>
+            </div>
+            <ul id="drivers-list" class="text-xs text-slate-300 space-y-2 list-none pl-0"></ul>
+          </div>
+
+          <!-- Cautionary Flags -->
+          <div class="bg-slate-900/80 border border-amber-900/40 rounded-xl p-4 flex flex-col gap-2.5">
+            <div class="flex items-center gap-1.5 text-amber-400 text-xs font-bold uppercase tracking-wider">
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+              <span>Cautionary Flags</span>
+            </div>
+            <ul id="flags-list" class="text-xs text-slate-300 space-y-2 list-none pl-0"></ul>
+          </div>
+
+          <!-- Recommended Actions -->
+          <div class="bg-slate-900/80 border border-sky-900/40 rounded-xl p-4 flex flex-col gap-2.5">
+            <div class="flex items-center gap-1.5 text-sky-400 text-xs font-bold uppercase tracking-wider">
+              <i data-lucide="list-checks" class="w-4 h-4"></i>
+              <span>Execution Actions</span>
+            </div>
+            <ul id="actions-list" class="text-xs text-slate-300 space-y-2 list-none pl-0"></ul>
+          </div>
+        </div>
+
+        <!-- 3. Consolidated Observations Card -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex flex-col gap-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <div class="flex items-center gap-2">
+              <i data-lucide="message-square-text" class="w-4 h-4 text-amber-400"></i>
+              <h4 class="text-xs font-bold text-white uppercase tracking-wider">Consolidated Observations</h4>
+            </div>
+          </div>
+          <div id="observations-container" class="space-y-2 text-xs text-slate-300"></div>
+        </div>
+
+        <!-- 4. 10-Agent Deep Dive Evidence Tabs -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
+          <!-- Evidence Tabs Navigation -->
+          <div class="flex items-center border-b border-slate-800 bg-slate-950/60 overflow-x-auto text-xs font-medium text-slate-400 px-2">
+            <button class="tab-btn active px-3 py-3 border-b-2 border-amber-500 text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="market">
+              <i data-lucide="bar-chart-3" class="w-3.5 h-3.5 text-amber-400"></i> Market
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="infrastructure">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i> 5km Amenities & Map
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="competition">
+              <i data-lucide="users" class="w-3.5 h-3.5 text-sky-400"></i> Competition
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="buyer">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-400"></i> Buyer Fit
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="finance">
+              <i data-lucide="coins" class="w-3.5 h-3.5 text-emerald-400"></i> Finance
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="location">
+              <i data-lucide="compass" class="w-3.5 h-3.5 text-rose-400"></i> Location
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="regulatory">
+              <i data-lucide="scale" class="w-3.5 h-3.5 text-indigo-400"></i> Regulatory
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="city">
+              <i data-lucide="building" class="w-3.5 h-3.5 text-amber-400"></i> City Macro
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="execution">
+              <i data-lucide="check-square" class="w-3.5 h-3.5 text-teal-400"></i> Execution
+            </button>
+            <button class="tab-btn px-3 py-3 border-b-2 border-transparent hover:text-white flex items-center gap-1.5 whitespace-nowrap" data-tab="portfolio">
+              <i data-lucide="pie-chart" class="w-3.5 h-3.5 text-orange-400"></i> Portfolio
+            </button>
+          </div>
+
+          <!-- Tab Panels Container -->
+          <div class="p-5" id="tab-content-area"></div>
+        </div>
+
+        <!-- 4B. WHAT-IF SCENARIO SENSITIVITY ENGINE (Canonical Multi-Dimension) -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-xl flex flex-col gap-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div class="flex items-center gap-2">
+              <i data-lucide="sliders" class="w-5 h-5 text-amber-400"></i>
+              <div>
+                <h4 class="text-sm font-bold text-white">Scenario Analysis</h4>
+                <p class="text-[11px] text-slate-400">See how different launch assumptions affect the decision.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scenario Inline Notification Banner -->
+          <div id="scenario-message-banner" class="hidden p-3 rounded-lg text-xs flex items-start gap-2 border"></div>
+
+          <!-- Scenario Controls: 6 Simulation Parameters -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Scenario Price (₹ / sq.ft)</label>
+              <input type="number" id="scenario-price-input" step="50" min="1000" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white font-mono focus:border-amber-500 focus:outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Planned Units</label>
+              <input type="number" id="scenario-units-input" step="10" min="10" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white font-mono focus:border-amber-500 focus:outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Configuration</label>
+              <select id="scenario-bhk-select" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:border-amber-500 focus:outline-none transition">
+                <option value="1BHK">1 BHK</option>
+                <option value="2BHK">2 BHK</option>
+                <option value="3BHK" selected>3 BHK</option>
+                <option value="4BHK">4 BHK</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Competitor Month</label>
+              <input type="number" id="scenario-comp-month-input" min="1" max="12" value="4" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white font-mono focus:border-amber-500 focus:outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Intervention Month</label>
+              <input type="number" id="scenario-int-month-input" min="1" max="12" value="6" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white font-mono focus:border-amber-500 focus:outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Price Adj. %</label>
+              <input type="number" id="scenario-int-adj-input" step="0.5" min="-30" max="20" value="-5.0" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white font-mono focus:border-amber-500 focus:outline-none transition" />
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <button id="btn-run-scenario" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+              <span>Run Scenario</span>
+            </button>
+          </div>
+
+          <!-- Scenario Results Area -->
+          <div id="scenario-results-container" class="hidden flex flex-col gap-4">
+
+            <!-- 1. Executive Verdict & DecisionEngine Hurdle Banner -->
+            <div id="scen-verdict-banner" class="p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-slate-950/80">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Verdict:</span>
+                  <span id="scen-verdict-badge" class="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider font-mono">--</span>
+                </div>
+                <p id="scen-verdict-summary" class="text-xs text-slate-300 leading-relaxed max-w-3xl">--</p>
+              </div>
+            </div>
+
+            <!-- 2. Four Scenario Dimension Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              <!-- Dimension 1: Baseline -->
+              <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between space-y-3">
+                <div class="space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-sky-400 uppercase tracking-wide">1. Baseline</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-mono">Reference</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">12-month trajectory without competitive entry or intervention</p>
+                </div>
+                <div class="space-y-1.5 border-t border-slate-800/80 pt-2 text-xs">
+                  <div class="flex justify-between"><span class="text-slate-400">Target Bookings:</span><span id="scen-base-bookings" class="font-mono font-bold text-white">--</span></div>
+                  <div class="flex justify-between"><span class="text-slate-400">Absorption Rate:</span><span id="scen-base-abs" class="font-mono font-bold text-white">--</span></div>
+                  <div class="flex justify-between"><span class="text-slate-400">Projected Revenue:</span><span id="scen-base-rev" class="font-mono font-bold text-sky-300">--</span></div>
+                </div>
+              </div>
+
+              <!-- Dimension 2: Competition -->
+              <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between space-y-3">
+                <div class="space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-wide">2. Competition</span>
+                    <span id="scen-comp-status-badge" class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono">Verified DB</span>
+                  </div>
+                  <p id="scen-comp-name" class="text-xs font-semibold text-slate-200 truncate">--</p>
+                </div>
+                <div class="space-y-1.5 border-t border-slate-800/80 pt-2 text-xs">
+                  <div class="flex justify-between"><span class="text-slate-400">Developer:</span><span id="scen-comp-dev" class="font-mono font-bold text-white truncate max-w-[120px]">--</span></div>
+                  <div class="flex justify-between"><span class="text-slate-400">Recorded Price:</span><span id="scen-comp-price" class="font-mono font-bold text-amber-300">--</span></div>
+                  <div class="flex justify-between"><span class="text-slate-400">Launch Timing:</span><span id="scen-comp-timing" class="font-mono font-bold text-slate-300">Month --</span></div>
+                </div>
+              </div>
+
+              <!-- Dimension 3: Blind Spot -->
+              <div class="p-4 rounded-xl bg-slate-950/80 border border-rose-900/40 flex flex-col justify-between space-y-3">
+                <div class="space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-rose-400 uppercase tracking-wide">3. Blind Spot</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono">No Action</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">Competitor enters; management fails to respond; demand drag</p>
+                </div>
+                <div class="space-y-1.5 border-t border-slate-800/80 pt-2 text-xs">
+                  <div class="flex justify-between"><span class="text-slate-400">Realized Bookings:</span><span id="scen-blind-bookings" class="font-mono font-bold text-white">--</span></div>
+                  <div class="flex justify-between"><span class="text-slate-400">Cumulative Revenue:</span><span id="scen-blind-rev" class="font-mono font-bold text-slate-300">--</span></div>
+                  <div class="flex justify-between items-center"><span class="text-rose-400 font-bold">Revenue Loss:</span><span id="scen-blind-loss" class="font-mono font-extrabold text-rose-400 text-sm">--</span></div>
+                </div>
+              </div>
+
+              <!-- Dimension 4: Intervention -->
+              <div class="p-4 rounded-xl bg-slate-950/80 border border-emerald-900/40 flex flex-col justify-between space-y-3">
+                <div class="space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-wide">4. Intervention</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">Counter Action</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400">Managerial counter-action re-establishes sales momentum</p>
+                </div>
+                <div class="space-y-1.5 border-t border-slate-800/80 pt-2 text-xs">
+                  <div class="flex justify-between"><span class="text-slate-400">Intervention Timing:</span><span id="scen-int-timing" class="font-mono font-bold text-white">Month --</span></div>
+                  <div class="flex justify-between"><span class="text-emerald-400 font-bold">Revenue Recovery:</span><span id="scen-int-recovery" class="font-mono font-extrabold text-emerald-400 text-sm">--</span></div>
+                  <div class="flex justify-between"><span class="text-slate-400">Recovery %:</span><span id="scen-int-recovery-pct" class="font-mono font-bold text-emerald-300">--</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Key Delta Metrics Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 block font-medium">Price Delta</span>
+                  <span id="scen-price-delta" class="text-base font-extrabold font-mono">--</span>
+                </div>
+                <span id="scen-price-sub" class="text-[10px] text-slate-500 block truncate mt-1">Base: --</span>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 block font-medium">Revenue Delta</span>
+                  <span id="scen-rev-delta" class="text-base font-extrabold font-mono">--</span>
+                </div>
+                <span id="scen-rev-sub" class="text-[10px] text-slate-500 block truncate mt-1">Base: --</span>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 block font-medium">Gross Margin</span>
+                  <span id="scen-margin-delta" class="text-base font-extrabold font-mono">--</span>
+                </div>
+                <span id="scen-margin-sub" class="text-[10px] text-slate-500 block truncate mt-1">Base: --</span>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 block font-medium">Absorption Shift</span>
+                  <span id="scen-abs-shift" class="text-base font-extrabold font-mono">--</span>
+                </div>
+                <span id="scen-abs-sub" class="text-[10px] text-slate-500 block truncate mt-1">Base: --</span>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 block font-medium">Risk Score Delta</span>
+                  <span id="scen-risk-delta" class="text-base font-extrabold font-mono">--</span>
+                </div>
+                <span id="scen-risk-sub" class="text-[10px] text-slate-500 block truncate mt-1">Base: --</span>
+              </div>
+              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400 block font-medium">Net Recovery %</span>
+                  <span id="scen-kpi-recovery-pct" class="text-base font-extrabold font-mono text-emerald-400">--</span>
+                </div>
+                <span id="scen-kpi-loss-sub" class="text-[10px] text-rose-400 block truncate mt-1">Loss: --</span>
+              </div>
+            </div>
+
+            <!-- 4. 12-Month Simulation Trajectory Matrix Table -->
+            <div class="border border-slate-800 rounded-xl overflow-hidden bg-slate-950/70">
+              <div class="px-4 py-3 bg-slate-950/90 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i>
+                  <span class="text-xs font-bold text-slate-200 uppercase tracking-wider">12-Month Simulation</span>
+                </div>
+
+              </div>
+              <div class="overflow-x-auto max-h-72 p-2">
+                <table class="w-full text-left text-xs">
+                  <thead class="text-[10px] uppercase text-slate-400 bg-slate-900/80 border-b border-slate-800">
+                    <tr>
+                      <th class="py-2 px-3">Month</th>
+                      <th class="py-2 px-3 text-sky-400">Base Bookings</th>
+                      <th class="py-2 px-3 text-sky-400">Base Rev (Cr)</th>
+                      <th class="py-2 px-3 text-rose-400">Blind Bookings</th>
+                      <th class="py-2 px-3 text-rose-400">Blind Rev (Cr)</th>
+                      <th class="py-2 px-3 text-emerald-400">Int. Bookings</th>
+                      <th class="py-2 px-3 text-emerald-400">Int. Rev (Cr)</th>
+                      <th class="py-2 px-3">Dynamics</th>
+                    </tr>
+                  </thead>
+                  <tbody id="scen-trajectory-tbody" class="divide-y divide-slate-800/60 font-mono text-[11px]"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 5. Methodology & Cannibalization Disclosure Box (Constraint 4) -->
+            <div class="p-3.5 rounded-xl bg-amber-500/5 border border-amber-500/20 text-xs flex items-start gap-3">
+              <i data-lucide="alert-circle" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+              <div class="space-y-1">
+                <span class="font-bold text-amber-300">Methodology & Cannibalization Assumptions Disclosure</span>
+                <p class="text-[11px] text-slate-300 leading-relaxed">
+                  <strong class="text-white">Observed Competitor Data:</strong> Sourced from verified database records (<span id="scen-disclose-source">projects table</span>).<br/>
+                  <strong class="text-white">Empirical Price Sensitivity:</strong> Evaluated via OLS regression (&beta; = -0.006945 / ₹/sq.ft, p=0.0235).<br/>
+                  <strong class="text-white">Cannibalization Drag:</strong> Competitor market entry is modeled as a <em class="text-amber-200">scenario assumption</em> (25% deceleration in sales velocity during unmitigated overlap), NOT an empirical law.<br/>
+                  <strong class="text-white">Verdict Authority:</strong> Rendered exclusively by <strong class="text-white">DecisionEngine</strong> using institutional hurdle policies.
+                </p>
+              </div>
+            </div>
+
+            <!-- 6. Calculation Provenance & ML Audit Accordion -->
+            <div class="border border-slate-800 rounded-lg overflow-hidden bg-slate-950/40">
+              <button id="btn-toggle-how-calculated" type="button" class="w-full px-3.5 py-2.5 text-xs font-semibold text-slate-300 hover:text-white flex items-center justify-between transition bg-slate-950/80">
+                <span class="flex items-center gap-2">
+                  <i data-lucide="cpu" class="w-3.5 h-3.5 text-amber-400"></i>
+                  <span>Technical Details</span>
+                </span>
+                <i data-lucide="chevron-down" id="how-calc-chevron" class="w-3.5 h-3.5 transition-transform"></i>
+              </button>
+              <div id="how-calculated-container" class="hidden p-3.5 border-t border-slate-800 space-y-2.5 text-xs bg-slate-950/70">
+                <div class="flex items-center gap-2 flex-wrap pb-2 border-b border-slate-800/60 text-[10px] font-mono">
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">[ML] Machine Learning</span>
+                  <span class="px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold">[FORMULA] Financial Math</span>
+                  <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">[RULE] DecisionEngine</span>
+                  <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 font-bold">[DATABASE / ASSUMPTION]</span>
+                </div>
+                <div id="scen-how-calculated-list" class="space-y-2"></div>
+              </div>
+          </div>
+        </div>
+
+        <!-- 5. Raw Evidence & Audit Inspector Accordion -->
+        <div class="border border-slate-800 rounded-xl overflow-hidden bg-slate-950/60">
+          <button id="btn-toggle-json" class="w-full px-4 py-3 text-xs font-semibold text-slate-400 hover:text-white flex items-center justify-between transition">
+            <span class="flex items-center gap-2">
+              <i data-lucide="code-2" class="w-4 h-4 text-amber-400"></i>
+              <span>API Response (JSON)</span>
+            </span>
+            <i data-lucide="chevron-down" id="json-chevron" class="w-4 h-4 transition-transform"></i>
+          </button>
+          <div id="json-viewer-container" class="hidden border-t border-slate-800 p-4 bg-slate-950">
+            <pre id="raw-json-output" class="text-[11px] font-mono text-amber-300/90 overflow-x-auto max-h-96 p-2"></pre>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- VIEW 2: AI COPILOT INTERACTIVE CHAT                      -->
+  <!-- ======================================================== -->
+  <main id="copilot-view" class="hidden flex-1 p-6 max-w-[980px] w-full mx-auto flex flex-col gap-4">
+    
+    <!-- Copilot Header Banner -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 shadow-sm">
+          <i data-lucide="bot" class="w-7 h-7"></i>
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-slate-900">PURAVANKARA AI Copilot</h2>
+          <p class="text-xs text-slate-500 mt-0.5">Ask about projects, markets, competition, pricing and infrastructure.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Suggested Question Chips -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+      <span class="text-[11px] text-slate-500 whitespace-nowrap uppercase font-semibold">Quick Inquiries:</span>
+      <button class="copilot-chip whitespace-nowrap px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 hover:border-amber-400 transition">
+        Kanakapura absorption
+      </button>
+      <button class="copilot-chip whitespace-nowrap px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 hover:border-amber-400 transition">
+        Compare Kanakapura & Bagalur
+      </button>
+      <button class="copilot-chip whitespace-nowrap px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 hover:border-amber-400 transition">
+        3BHK price in Kanakapura
+      </button>
+      <button class="copilot-chip whitespace-nowrap px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 hover:border-amber-400 transition">
+        Amenities within 5 km
+      </button>
+      <button class="copilot-chip whitespace-nowrap px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 hover:border-amber-400 transition">
+        Historical buyer profile
+      </button>
+      <button class="copilot-chip whitespace-nowrap px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 hover:border-amber-400 transition">
+        Impact of +₹500/sq.ft
+      </button>
+      <button class="copilot-chip whitespace-nowrap px-3 py-1.5 rounded-full bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 hover:border-amber-400 transition">
+        Bengaluru launches & inventory
+      </button>
+    </div>
+
+    <!-- Chat Messages Stream Container -->
+    <div id="chat-messages" class="flex-1 min-h-[480px] max-h-[640px] overflow-y-auto bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col gap-4">
+      <!-- Starter Welcome Bubble -->
+      <div class="flex items-start gap-3 max-w-3xl">
+        <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200">
+          <i data-lucide="bot" class="w-4 h-4"></i>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-4 text-sm text-slate-700 leading-relaxed shadow-sm">
+          <p class="font-semibold text-slate-900 mb-1">Welcome to PURAVANKARA AI Copilot</p>
+          <p class="mb-2">Ask for a market overview, a corridor comparison, pricing, buyer fit, or nearby infrastructure. Answers are laid out as a short brief with the key numbers up front.</p>
+          <p class="text-slate-500">Ask a question or click any prompt above to get started.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Input Box -->
+    <form id="copilot-form" class="flex items-center gap-2 bg-white border border-slate-200 rounded-2xl p-2 shadow-sm">
+      <input type="text" id="copilot-input" placeholder="Ask about any micro-market, comparison, buyer demographics, or city trends..."
+        class="flex-1 bg-transparent px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none" autocomplete="off" />
+      <button type="submit" id="btn-copilot-send"
+        class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition flex items-center gap-1.5 shadow-lg shadow-amber-500/20">
+        <span>Send</span>
+        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+      </button>
+    </form>
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: Full Bengaluru City Map (25 Micro-Markets)         -->
+  <!-- ======================================================== -->
+  <div id="modal-city-map" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-6xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/70">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+            <i data-lucide="map" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-white">Location & Amenities</h3>
+            <p class="text-[11px] text-slate-400">Move the pin to explore nearby amenities.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btn-map-reset-view" class="text-xs px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1">
+            <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+            <span>Reset View</span>
+          </button>
+          <button class="modal-close p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters & Search Toolbar -->
+      <div class="p-3 border-b border-slate-800 bg-slate-950/40 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2 flex-1 min-w-[240px]">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+          <input type="text" id="map-search-input" placeholder="Search micro-market (e.g. Whitefield, Bagalur, Kanakapura)..."
+            class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 w-full" />
+        </div>
+        <!-- Zone Filter Buttons -->
+        <div class="flex items-center gap-1 overflow-x-auto" id="map-zone-filters">
+          <button class="zone-filter-btn active px-2.5 py-1 rounded-md text-[11px] font-semibold bg-amber-500 text-slate-950 transition" data-zone="ALL">All Zones</button>
+          <button class="zone-filter-btn px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-800 text-slate-300 hover:text-white transition" data-zone="North">North</button>
+          <button class="zone-filter-btn px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-800 text-slate-300 hover:text-white transition" data-zone="South">South</button>
+          <button class="zone-filter-btn px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-800 text-slate-300 hover:text-white transition" data-zone="East">East</button>
+          <button class="zone-filter-btn px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-800 text-slate-300 hover:text-white transition" data-zone="Central">Central</button>
+          <button class="zone-filter-btn px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-800 text-slate-300 hover:text-white transition" data-zone="West">West</button>
+        </div>
+      </div>
+
+      <!-- Map & Intelligence Panel Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-hidden min-h-[480px]">
+        <!-- Leaflet Map (8 cols) -->
+        <div class="lg:col-span-8 relative h-full min-h-[400px]" id="city-map-wrapper">
+          <div id="city-leaflet-map" class="w-full h-full min-h-[450px]"></div>
+        </div>
+
+        <!-- Slide-Out / Side Market Detail Panel (4 cols) -->
+        <div class="lg:col-span-4 p-4 border-l border-slate-800 bg-slate-950/70 overflow-y-auto flex flex-col gap-3" id="map-market-detail-panel">
+          <div class="text-center py-12 text-slate-500 text-xs">
+            <i data-lucide="mouse-pointer-click" class="w-8 h-8 mx-auto mb-2 text-slate-600"></i>
+            <span>Click on the map or select a micro-market to explore the 5 km radius.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: 25 Micro-Markets Explorer Table -->
+  <div id="modal-markets" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+        <div class="flex items-center gap-2">
+          <i data-lucide="map-pin" class="w-5 h-5 text-sky-400"></i>
+          <h3 class="font-bold text-sm text-white">Bengaluru Micro-Markets</h3>
+        </div>
+        <button class="modal-close p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-4 overflow-y-auto flex-1">
+        <table class="w-full text-xs text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-semibold bg-slate-950/80">
+              <th class="py-2.5 px-3">ID</th>
+              <th class="py-2.5 px-3">Micro-Market</th>
+              <th class="py-2.5 px-3">Zone</th>
+              <th class="py-2.5 px-3">Segment Bias</th>
+              <th class="py-2.5 px-3 text-right">Avg ₹/sq.ft</th>
+              <th class="py-2.5 px-3 text-right">Absorption %</th>
+              <th class="py-2.5 px-3 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody id="micromarkets-table-body" class="divide-y divide-slate-800/60"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: City Profile -->
+  <div id="modal-city" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+        <div class="flex items-center gap-2">
+          <i data-lucide="building-2" class="w-5 h-5 text-amber-400"></i>
+          <h3 class="font-bold text-sm text-white">Bengaluru Residential City Profile (Knight Frank / C&W / JLL)</h3>
+        </div>
+        <button class="modal-close p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-5 flex flex-col gap-4 text-xs" id="city-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>

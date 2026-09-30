@@ -1,0 +1,345 @@
+/* Puravankara RealEstateIQ Custom Styles */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Mode Switcher Button */
+.mode-tab-btn {
+  cursor: pointer;
+}
+.mode-tab-btn:hover {
+  color: #0f172a;
+}
+
+/* Verdict Styles */
+.verdict-launch {
+  background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.95));
+  border-color: rgba(16, 185, 129, 0.4);
+}
+.verdict-launch #verdict-icon-container {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+.verdict-launch #verdict-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.verdict-hold {
+  background: radial-gradient(circle at top left, rgba(245, 158, 11, 0.15), rgba(15, 23, 42, 0.95));
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.verdict-hold #verdict-icon-container {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+.verdict-hold #verdict-badge {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.verdict-nolaunch {
+  background: radial-gradient(circle at top left, rgba(244, 63, 94, 0.15), rgba(15, 23, 42, 0.95));
+  border-color: rgba(244, 63, 94, 0.4);
+}
+.verdict-nolaunch #verdict-icon-container {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+.verdict-nolaunch #verdict-badge {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+/* Tab Transitions */
+.tab-btn.active {
+  border-color: #f59e0b;
+  color: #ffffff;
+}
+
+/* Metric KPI Card hover */
+.kpi-card {
+  transition: all 0.2s ease-in-out;
+}
+.kpi-card:hover {
+  border-color: #334155;
+  transform: translateY(-1px);
+}
+
+/* Copilot brief */
+#copilot-view .markdown-body {
+  color: #0f172a;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+#copilot-view .copilot-h1,
+#copilot-view .copilot-h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  margin: 0 0 0.65rem;
+}
+#copilot-view .copilot-h3 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin: 1rem 0 0.45rem;
+}
+#copilot-view .copilot-p {
+  margin: 0 0 0.75rem;
+  color: #334155;
+}
+#copilot-view .copilot-p strong,
+#copilot-view .copilot-list strong {
+  color: #0f172a;
+  font-weight: 650;
+}
+#copilot-view .copilot-list {
+  margin: 0 0 0.85rem;
+  padding-left: 1.1rem;
+  color: #334155;
+}
+#copilot-view .copilot-list li {
+  margin: 0.28rem 0;
+}
+#copilot-view .copilot-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 0.55rem;
+  margin: 0 0 0.9rem;
+}
+#copilot-view .copilot-metric {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.75rem;
+}
+#copilot-view .copilot-metric-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.2rem;
+}
+#copilot-view .copilot-metric-value {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+}
+#copilot-view .copilot-table-wrap {
+  overflow-x: auto;
+  margin: 0.35rem 0 0.9rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+}
+#copilot-view .copilot-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+#copilot-view .copilot-table th {
+  text-align: left;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+#copilot-view .copilot-table td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #0f172a;
+  vertical-align: top;
+}
+#copilot-view .copilot-table tr:last-child td {
+  border-bottom: none;
+}
+#copilot-view .copilot-table tbody tr:nth-child(even) td {
+  background: #fafbfc;
+}
+#copilot-view .markdown-body code {
+  background: #f1f5f9;
+  padding: 0.05rem 0.3rem;
+  border-radius: 0.25rem;
+  font-family: ui-monospace, monospace;
+  color: #b45309;
+}
+#copilot-view .copilot-note {
+  margin-top: 0.35rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.75rem;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  font-size: 0.72rem;
+}
+#copilot-view .copilot-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+}
+#copilot-view .copilot-source {
+  font-size: 0.68rem;
+  color: #475569;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+#copilot-view .copilot-meta {
+  margin-top: 0.7rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.68rem;
+  color: #94a3b8;
+}
+
+/* Leaflet Map Custom Styling */
+.leaflet-container {
+  background: #090d16 !important;
+  font-family: inherit !important;
+}
+
+/* Dark theme filter for OpenStreetMap raster tiles */
+.leaflet-tile-pane {
+  filter: brightness(0.65) invert(1) contrast(3.2) hue-rotate(205deg) saturate(0.25) brightness(0.75);
+}
+
+.leaflet-popup-content-wrapper {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7) !important;
+}
+
+.leaflet-popup-tip {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+}
+
+/* Custom Marker Pins */
+.custom-map-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  font-size: 10px;
+  font-weight: bold;
+  color: #0f172a;
+}
+
+/* Amenity Category Colors */
+.cat-transport { background-color: #38bdf8; }
+.cat-education { background-color: #facc15; }
+.cat-healthcare { background-color: #34d399; }
+.cat-commercial { background-color: #c084fc; }
+.cat-employment { background-color: #fbbf24; }
+.cat-civic { background-color: #f43f5e; }
+.cat-recreation { background-color: #2dd4bf; }
+
+/* Selected Location Pin Pulsing Marker */
+.custom-selected-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8));
+}
+.custom-selected-pin:active {
+  cursor: grabbing;
+}
+.pin-pulse {
+  width: 24px;
+  height: 24px;
+  background: #f59e0b;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 14px #f59e0b;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+.pin-pulse::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  border: 2px solid #f59e0b;
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Collapsible technical details */
+details summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary::before {
+  content: '▸ ';
+  font-size: 0.7em;
+  margin-right: 4px;
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+details[open] summary::before {
+  content: '▾ ';
+}
+details[open] > div {
+  animation: detailsReveal 0.2s ease;
+}
+@keyframes detailsReveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Increased whitespace around decision hero */
+#decision-hero {
+  margin-bottom: 0.5rem;
+}
+
+

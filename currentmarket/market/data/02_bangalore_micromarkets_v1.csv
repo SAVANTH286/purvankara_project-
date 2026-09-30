@@ -1,0 +1,26 @@
+micromarket_id,micromarket_name,zone,segment_bias,premium_amenability,launch_activity_signal,absorption_signal,key_drivers,notes_for_model,source_basis
+MM01,CBD Lavelle-MG-Richmond,Central,High-end / Luxury,Very High,Low (scarce land),Selective ultra-premium,Prime CBD scarcity,Ultra premium apartments only,C&W submarket key; KF Central
+MM02,Off-Central Frazer-Benson-Richards-Dollars Colony,Off-Central,High-end,High,Low-Medium,Stable premium,Inner established localities,High-end segment pocket,C&W High-end Off Central
+MM03,Indiranagar-Richmond Town-Vasanth Nagar,Off-Central I,Mid-High,High,Medium,Healthy lifestyle demand,Lifestyle + connectivity,Good for quality mid-premium,C&W Off-Central I
+MM04,Whitefield,East,Mid-High / Premium,High,Very High,Strong,ITPL + Purple Line metro,Launch leader; Q1 2026 heavy launches,C&W; JLL; KF East
+MM05,Old Airport Road-Marathahalli-KR Puram,East,Mid-High,High,High,Strong,ORR / jobs adjacency,Core east living-work corridor,KF East; C&W East
+MM06,Old Madras Road-Budigere Cross,East,Mid,Medium,Medium-High,Medium,Peripheral east expansion,Future east spillover,C&W Mid East
+MM07,Hoskote,East,Mid,Medium,High (recent),Medium,Active launch pocket Q4 2025,Watch inventory risk vs velocity,C&W Q4 2025 launches
+MM08,Sarjapur Road,South-East,Mid-Premium,High,Very High,Strong,ORR link; family townships,High appreciation corridor,C&W SE; KF South pockets
+MM09,ORR Marathahalli-Sarjapur-HSR,South-East,Mid-High,High,High,Strong,Jobs + Yellow Line benefit,Tech-corridor residential,C&W SE
+MM10,Hosur Road-Begur,South / South-East,Mid-Premium,High,High,Improving,Premiumising south launches,Rising high-ticket activity,KF South note
+MM11,Koramangala,South,High-end,Very High,Low-Medium,Selective,Mature expensive market,Limited large-scale launch room,C&W High-end South
+MM12,JP Nagar-Jayanagar-Banashankari,South,Mid-High,High,Medium,Stable,Established south living,Strong end-user base,C&W Mid South
+MM13,Bannerghatta Road,South,Mid-High,High,High,Healthy,Active launch corridor,South supply contributor,C&W Q4 2025
+MM14,Kanakapura Road,South,Mid,Medium-High,High,Healthy,South growth corridor,Launch contributor 2025,C&W Q4 2025
+MM15,BTM Layout,South,Mid,Medium,Low-Medium,Stable dense,Established dense locality,Limited greenfield scale,C&W Mid South
+MM16,Electronic City,Far South,Mid / Value-Premium mix,Medium-High,High,Healthy,Yellow Line + IT campuses,Value + improving connectivity,C&W Far South; JLL outlook
+MM17,Attibele-Chandapur,Far South,Mid,Medium,Medium,Moderate,Peripheral south,More mid/value positioning,C&W Far South
+MM18,Hebbal-Bellary Road,North,Mid-Premium,High,High,Strong,Airport + Manyata pull,North premium anchor,KF North; C&W North
+MM19,Thanisandra-Hennur,North,Mid-Premium,High,Very High,Strong,North demand belt,Inventory-ready demand zone,KF; C&W North
+MM20,Jakkur-Yelahanka,North,Mid-Premium,High,High,Strong,Airport corridor,Key north residential,KF; C&W
+MM21,Devanahalli-Airport Road,North,Mid-Growth,High (selective),High,Strong / rising,KIA + infra story,From future-ready to current preference,KF H2 2025
+MM22,Bagalur,North,Mid,Medium-High,Medium-High,Learning priority,North growth spillover; live projects,DSS PILOT micromarket - deepen with internal sheets,C&W completion note; team priority
+MM23,Malleshwaram-Rajajinagar-Yeshwanthpur,North-West,Mid-High,High,Medium,Stable,Mature NW localities,Established buyer base,C&W NW
+MM24,Tumkur Road-Vijayanagar,West / North-West,Mid,Medium,Medium,Moderate,West corridor,More mid positioning,C&W West/NW
+MM25,Mysore Road-Uttarahalli-Magadi Road,West,Mid,Medium,Medium,Moderate,West / SW living,Value-mid residential,C&W West

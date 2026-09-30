@@ -1,0 +1,33 @@
+{
+  "model_name": "Project Price Prediction Regressor",
+  "model_version": "v1.1.0-gbr",
+  "algorithm": "GradientBoostingRegressor",
+  "features": [
+    "units",
+    "bhk",
+    "is_luxury",
+    "is_premium",
+    "is_mid"
+  ],
+  "dataset_size": 18,
+  "real_project_rows": 18,
+  "benchmark_rows": 0,
+  "unique_physical_developments": 9,
+  "training_micro_markets": 1,
+  "primary_market": "Bagaluru",
+  "evaluation_method": "Leave-One-Development-Out Grouped Cross-Validation (9 clusters)",
+  "evaluation_metrics": {
+    "MAE_INR_sqft": 1833.4,
+    "RMSE_INR_sqft": 2654.1,
+    "R2_Score": 0.0508,
+    "in_sample_MAE_INR_sqft": 483.7,
+    "in_sample_R2": 0.9493
+  },
+  "target": "price_per_sqft",
+  "unit": "INR / sq.ft",
+  "limitations": [
+    "Training data is derived exclusively from 18 verified project launches across 9 physical developments in North Bengaluru (Bagaluru).",
+    "No empirical project-level pricing records exist in the repository for the other 24 Bengaluru micro-markets.",
+    "Predictions for non-Bagalur corridors represent baseline product configuration and segment scaling from North Bangalore developments, not submarket-cleared transaction prices."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "model_name": "Price Intelligence Regressor",
+  "model_version": "v2.0.0-ridge",
+  "algorithm": "Regularized Ridge Regression",
+  "alpha": 10.0,
+  "features": [
+    "units",
+    "bhk",
+    "unit_size",
+    "is_luxury",
+    "is_premium",
+    "is_mid",
+    "zone_north",
+    "zone_east",
+    "zone_south",
+    "zone_central"
+  ],
+  "dataset_size": 53,
+  "real_project_rows": 53,
+  "benchmark_rows": 0,
+  "synthetic_rows": 0,
+  "unique_physical_developments": 44,
+  "training_micro_markets": 15,
+  "training_developers": 21,
+  "evaluation_method": "Leave-One-Physical-Development-Out Grouped Cross-Validation (44 clusters)",
+  "evaluation_metrics": {
+    "OOS_MAE_INR_sqft": 1724.8,
+    "OOS_RMSE_INR_sqft": 2134.3,
+    "OOS_R2_Score": 0.6842,
+    "OOS_MedAE_INR_sqft": 1446.6,
+    "OOS_MAPE_pct": 18.0,
+    "in_sample_MAE_INR_sqft": 1439.3,
+    "in_sample_R2": 0.7831
+  },
+  "target": "new_launch_price_per_sqft",
+  "unit": "INR / sq.ft",
+  "coverage_tiers": {
+    "OBSERVED_MARKET": 1,
+    "LIMITED_MARKET": 14,
+    "CONFIGURATION_BASELINE": 10
+  },
+  "coefficients": {
+    "units": 329.5,
+    "bhk": 680.14,
+    "unit_size": -19.14,
+    "is_luxury": 1308.73,
+    "is_premium": -335.88,
+    "is_mid": -863.69,
+    "zone_north": -394.39,
+    "zone_east": 244.57,
+    "zone_south": -318.97,
+    "zone_central": 954.52
+  },
+  "intercept": 10298.43,
+  "limitations": [
+    "Model utilizes 53 verified project launches across 15 micro-markets. Only 1 corridor (Bagalur) meets the full statistical saturation gate (>=8 projects).",
+    "14 corridors possess limited real observations (1 to 6 projects); predictions in these corridors are anchored on zonal and product configuration scaling.",
+    "10 corridors have 0 verified project observations; predictions represent global configuration baselines, not local corridor-cleared prices."
+  ]
+}

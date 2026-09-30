@@ -1,0 +1,29 @@
+{
+  "intent": "run_market_scenario",
+  "agents": ["scenario_tool"],
+  "tools": [
+    {
+      "name": "run_scenario",
+      "arguments": {
+        "micro_market": "Kanakapura Road",
+        "base_price_per_sqft": 6500,
+        "base_units": 300,
+        "new_price_per_sqft": null,
+        "new_units": null,
+        "new_bhk": null,
+        "competitor_launch_month": 4,
+        "intervention_month": null,
+        "intervention_price_adjustment_pct": null
+      }
+    }
+  ],
+  "parameters": {
+    "micro_market": "Kanakapura Road",
+    "property_segment": null,
+    "bhk": null,
+    "units": 300,
+    "price_per_sqft": 6500
+  },
+  "clarification_needed": true,
+  "clarification_question": "What new price per sqft, unit count, BHK, intervention month, and price adjustment % should the scenario test? Competitor launch month is set to 4."
+}

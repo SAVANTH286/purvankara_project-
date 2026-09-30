@@ -1,0 +1,91 @@
+{
+  "model_name": "Price Intelligence Regressor",
+  "model_version": "v2.1.0-ridge",
+  "algorithm": "Regularized Ridge Regression",
+  "alpha": 10.0,
+  "features": [
+    "units",
+    "bhk",
+    "average_unit_size_sqft",
+    "is_luxury",
+    "is_premium",
+    "is_mid",
+    "zone_north",
+    "zone_east",
+    "zone_south",
+    "zone_central"
+  ],
+  "dataset_size": 53,
+  "real_project_rows": 53,
+  "benchmark_rows": 0,
+  "synthetic_rows": 0,
+  "unique_physical_developments": 44,
+  "training_micro_markets": 15,
+  "training_developers": 21,
+  "evaluation_method": "Leave-One-Physical-Development-Out Grouped Cross-Validation (44 clusters)",
+  "evaluation_metrics": {
+    "OOS_MAE_INR_sqft": 1634.4,
+    "OOS_RMSE_INR_sqft": 2035.0,
+    "OOS_R2_Score": 0.7129,
+    "OOS_MedAE_INR_sqft": 1599.7,
+    "OOS_MAPE_pct": 17.2,
+    "LOMO_MAE_INR_sqft": 1779.1,
+    "LOMO_RMSE_INR_sqft": 2155.3,
+    "LOMO_R2_Score": 0.6779,
+    "LOMO_MedAE_INR_sqft": 1720.0,
+    "LOMO_MAPE_pct": 18.7,
+    "in_sample_MAE_INR_sqft": 1358.3,
+    "in_sample_R2": 0.8095
+  },
+  "target": "new_launch_price_per_sqft",
+  "unit": "INR / sq.ft",
+  "coverage_tiers": {
+    "OBSERVED_MARKET": 1,
+    "LIMITED_MARKET": 14,
+    "CONFIGURATION_BASELINE": 10
+  },
+  "coefficients": {
+    "units": 314.87,
+    "bhk": 134.21,
+    "average_unit_size_sqft": 1045.56,
+    "is_luxury": 1069.44,
+    "is_premium": -285.43,
+    "is_mid": -694.68,
+    "zone_north": -348.05,
+    "zone_east": 246.99,
+    "zone_south": -251.21,
+    "zone_central": 886.78
+  },
+  "intercept": 10298.43,
+  "feature_means": {
+    "units": 568.68,
+    "bhk": 2.76,
+    "average_unit_size_sqft": 1799.96,
+    "is_luxury": 0.26,
+    "is_premium": 0.38,
+    "is_mid": 0.36,
+    "zone_north": 0.55,
+    "zone_east": 0.28,
+    "zone_south": 0.11,
+    "zone_central": 0.04
+  },
+  "feature_scales": {
+    "units": 480.76,
+    "bhk": 0.73,
+    "average_unit_size_sqft": 861.46,
+    "is_luxury": 0.44,
+    "is_premium": 0.48,
+    "is_mid": 0.48,
+    "zone_north": 0.5,
+    "zone_east": 0.45,
+    "zone_south": 0.32,
+    "zone_central": 0.19
+  },
+  "harmonization_notes": [
+    "Harmonized 'unit_size' feature into 'average_unit_size_sqft'.",
+    "Bagaluru baseline (18 rows) derived average unit size via launched_sqft / launched_units, verified strictly within RERA Min-Max unit size bounds.",
+    "Phase 3C citywide filings (35 rows) preserved verified apartment unit sizes.",
+    "Eliminated extreme variance bug (std reduced from 333,785 sq.ft to 861.5 sq.ft).",
+    "Learned coefficient for average_unit_size_sqft is +1045.56 INR/sqft per standard deviation."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "model_name": "Market Demand & Absorption Regressor",
+  "model_version": "v1.0.0-rf",
+  "algorithm": "RandomForestRegressor",
+  "features": [
+    "unsold_units",
+    "overhang_months",
+    "total_available"
+  ],
+  "dataset_size": 45,
+  "evaluation_metrics": {
+    "MAE": 2.4,
+    "RMSE": 4.97,
+    "R2_Score": 0.9763
+  },
+  "target": "absorption_rate_percentage",
+  "unit": "%"
+}

@@ -1,0 +1,75 @@
+{
+  "model_name": "Puravankara Historical Buyer Segmentation",
+  "model_type": "KMeans Clustering with StandardScaler & OneHotEncoding",
+  "dataset": "Actual Historical Bookings (Blubelle, Atmosphere, Ecopolitan)",
+  "total_historical_records": 2583,
+  "training_samples": 2583,
+  "features": [
+    "age",
+    "bhk",
+    "is_first_home",
+    "income_lakhs",
+    "ind_Banking & Finance",
+    "ind_Corporate / Services",
+    "ind_Engineering & Manufacturing",
+    "ind_Healthcare & Pharma",
+    "ind_Technology / IT"
+  ],
+  "n_clusters": 5,
+  "evaluation_metric": "Silhouette Score",
+  "evaluation_result": 0.7209,
+  "model_version": "v1.2.0",
+  "as_of_date": "2026-09-21",
+  "cluster_profiles": {
+    "0": {
+      "segment_name": "Established Family Executives",
+      "sample_size": 546,
+      "share_percentage": 21.1,
+      "avg_age": 36.0,
+      "preferred_bhk": "2BHK (Avg 2.0)",
+      "first_home_percentage": 0.0,
+      "avg_household_income_lakhs": 25.0,
+      "dominant_industry": "Technology / IT"
+    },
+    "1": {
+      "segment_name": "Established Family Executives",
+      "sample_size": 1924,
+      "share_percentage": 74.5,
+      "avg_age": 36.0,
+      "preferred_bhk": "2BHK (Avg 2.3)",
+      "first_home_percentage": 0.0,
+      "avg_household_income_lakhs": 25.0,
+      "dominant_industry": "Corporate / Services"
+    },
+    "2": {
+      "segment_name": "Established Family Executives",
+      "sample_size": 44,
+      "share_percentage": 1.7,
+      "avg_age": 36.0,
+      "preferred_bhk": "3BHK (Avg 2.6)",
+      "first_home_percentage": 0.0,
+      "avg_household_income_lakhs": 25.0,
+      "dominant_industry": "Engineering & Manufacturing"
+    },
+    "3": {
+      "segment_name": "Established Family Executives",
+      "sample_size": 42,
+      "share_percentage": 1.6,
+      "avg_age": 36.0,
+      "preferred_bhk": "2BHK (Avg 2.2)",
+      "first_home_percentage": 0.0,
+      "avg_household_income_lakhs": 25.0,
+      "dominant_industry": "Banking & Finance"
+    },
+    "4": {
+      "segment_name": "Established Family Executives",
+      "sample_size": 27,
+      "share_percentage": 1.0,
+      "avg_age": 36.0,
+      "preferred_bhk": "2BHK (Avg 2.3)",
+      "first_home_percentage": 0.0,
+      "avg_household_income_lakhs": 25.0,
+      "dominant_industry": "Healthcare & Pharma"
+    }
+  }
+}

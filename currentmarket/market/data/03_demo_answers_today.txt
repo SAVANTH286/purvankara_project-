@@ -1,0 +1,21 @@
+﻿Bengaluru City Profile — Demo answers
+Date: 13 Aug 2026
+
+Q1. How many residential micro-markets are broadly delineated in Bengaluru?
+A: 25 working micro-markets under 9 zone groups (Central, Off-Central, East, South-East, South, Far South, North, North-West, West). Consultant reports often publish 5 mega-zones with nested localities — our CSV expands that to an operable ontology.
+
+Q2. How are they grouped geographically?
+A: Central / Off-Central / East (Whitefield–Hoskote belt) / South-East (Sarjapur–ORR–HSR–Hosur) / South (JP Nagar–Bannerghatta–Kanakapura–Koramangala) / Far South (Electronic City–Attibele) / North (Hebbal–Thanisandra–Yelahanka–Devanahalli–Bagalur) / North-West / West.
+
+Q3. Which lead absorption / launches?
+A: Reconciled across 3 platforms — Whitefield/East is the sharpest recent launch leader (C&W Q1’26 East ~57%; JLL Whitefield ~10k units). North belt is structurally strong (KF H2’25 ~34% launches/sales). Sarjapur/South + Hosur/Electronic City remain major corridors.
+
+Q4. Which are amenable to high-quality product?
+A: CBD/Off-Central, Koramangala, Whitefield premium, Hebbal/Bellary Road, upper Sarjapur, select North airport-corridor launches — matching INR 1.5cr+ / high-end mix (JLL ~69%, C&W Q1’26 high-end ~68%).
+
+Q5. City health one-liner?
+A: Premium/mid-premium absorbing well; sub-INR 5mn stressed (KF). Unsold up, but premium QTS healthy. Infra (metro/airport) steering demand to East, North, Sarjapur.
+
+Ingest path / folder: C:\Users\anmol\Downloads\Bangalore_City_Profile_Pack
+PDFs downloaded (Y/N): CW=Y (Q1’26+Q4’25+Q4’24)  KF=Y  JLL=Y (Bangalore-only MD extract)
+Sent to mentor (time): ________

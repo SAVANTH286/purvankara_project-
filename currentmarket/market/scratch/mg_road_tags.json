@@ -1,0 +1,523 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.7 375dc00a",
+  "osm3s": {
+    "timestamp_osm_base": "2026-09-21T17:40:05Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 246397026,
+      "lat": 12.9936865,
+      "lon": 77.5980003,
+      "tags": {
+        "internet_access": "wlan",
+        "name": "Bangalore Cantonment",
+        "name:kn": "ಬೆಂಗಳೂರು (ಕಂಟೊನ್ಮೆಂಟ್)",
+        "name:ml": "ബെംഗളൂരു കന്റോൺമെന്റ്",
+        "network": "IR",
+        "operator": "SWR",
+        "railway": "station",
+        "ref": "BNC",
+        "wheelchair": "limited",
+        "wikidata": "Q17049564",
+        "wikipedia": "en:Bangalore Cantonment railway station"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3164545466,
+      "lat": 12.9748219,
+      "lon": 77.6066004,
+      "tags": {
+        "alt_name": "D: Plaza Entrance",
+        "name": "D: Church Street Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "D",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3329651041,
+      "lat": 12.9731055,
+      "lon": 77.6173564,
+      "tags": {
+        "name": "B: North Side",
+        "note": "Occassionally kept closed",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "B"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3329651042,
+      "lat": 12.9728333,
+      "lon": 77.6170687,
+      "tags": {
+        "name": "A: South Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "A"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3671878175,
+      "lat": 12.9813285,
+      "lon": 77.5972439,
+      "tags": {
+        "name": "G: Income Tax Office",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "G"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3671878177,
+      "lat": 12.9813746,
+      "lon": 77.5963211,
+      "tags": {
+        "highway": "elevator",
+        "name": "F:",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "F"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3820147040,
+      "lat": 12.9762059,
+      "lon": 77.6263339,
+      "tags": {
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4979669546,
+      "lat": 12.980257,
+      "lon": 77.5979516,
+      "tags": {
+        "name": "B: Chinnaswamy Stadium",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "B"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4979669574,
+      "lat": 12.9810816,
+      "lon": 77.5965643,
+      "tags": {
+        "access": "permissive",
+        "highway": "elevator",
+        "name": "D: BSNL Office",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "D",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4979669577,
+      "lat": 12.9809639,
+      "lon": 77.5969463,
+      "tags": {
+        "name": "C: Cubbon Park",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "C"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5012445080,
+      "lat": 12.9807608,
+      "lon": 77.5983643,
+      "tags": {
+        "name": "A: HAL",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "A"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6400857552,
+      "lat": 12.9764992,
+      "lon": 77.626686,
+      "tags": {
+        "code": "HLRU",
+        "layer": "1",
+        "lit": "yes",
+        "name": "Halasuru",
+        "name:kn": "ಹಲಸೂರು",
+        "name:ml": "ഹലസുരു",
+        "network": "Namma Metro",
+        "note": "Contributors are requested to not edit the \"network\" and the \"operator\" tags. (2023/11/08)",
+        "operator": "Bangalore Metro Rail Corporation Limited",
+        "platforms": "2",
+        "public_transport": "station",
+        "public_transport:version": "2",
+        "railway": "station",
+        "ref": "HLRU",
+        "shelter": "yes",
+        "station": "subway",
+        "subway": "yes",
+        "website": "https://english.brmc.co.in",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6400857553,
+      "lat": 12.9730218,
+      "lon": 77.6170205,
+      "tags": {
+        "code": "TTY",
+        "layer": "1",
+        "lit": "yes",
+        "name": "Trinity",
+        "name:hi": "ट्रिनिटी",
+        "name:kn": "ಟ್ರಿನಿಟಿ ಮೆಟ್ರೊ ನಿಲ್ದಾಣ",
+        "name:ml": "ട്രിനിറ്റി",
+        "network": "Namma Metro",
+        "note": "Contributors are requested to not edit the \"network\" and the \"operator\" tags. (2023/11/08)",
+        "operator": "Bangalore Metro Rail Corporation Limited",
+        "platforms": "2",
+        "public_transport": "station",
+        "public_transport:version": "2",
+        "railway": "station",
+        "ref": "TTY",
+        "shelter": "yes",
+        "station": "subway",
+        "subway": "yes",
+        "website": "https://english.brmc.co.in",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6400857554,
+      "lat": 12.9755264,
+      "lon": 77.6067902,
+      "tags": {
+        "alt_name": "Plaza Theatre Metro Station",
+        "code": "MAGR",
+        "layer": "1",
+        "lit": "yes",
+        "name": "Mahatma Gandhi Road",
+        "name:kn": "ಮಹಾತ್ಮ ಗಾಂಧಿ ರಸ್ತೆ",
+        "name:ta": "மகாத்மா காந்தி சாலை",
+        "network": "Namma Metro",
+        "note": "Contributors are requested to not edit the \"network\" and the \"operator\" tags. (2023/11/08)",
+        "operator": "Bangalore Metro Rail Corporation Limited",
+        "platforms": "2",
+        "public_transport": "station",
+        "public_transport:version": "2",
+        "railway": "station",
+        "ref": "MAGR",
+        "shelter": "yes",
+        "short_name": "MG Road",
+        "start_date": "20-10-2011",
+        "station": "subway",
+        "subway": "yes",
+        "website": "https://english.brmc.co.in",
+        "wheelchair": "yes",
+        "wikidata": "Q5539354",
+        "wikipedia": "en:Mahatma Gandhi Road metro station (Bangalore)"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6400857555,
+      "lat": 12.9809575,
+      "lon": 77.5975756,
+      "tags": {
+        "code": "CBPK",
+        "name": "Cubbon Park",
+        "name:etymology:wikidata": "Q6767214",
+        "name:hi": "कबन पार्क",
+        "name:kn": "ಕಬ್ಬನ್ ಪಾರ್ಕ್",
+        "name:ml": "കബ്ബൺ പാർക്ക്",
+        "network": "Namma Metro",
+        "note": "Contributors are requested to not edit the \"network\" and the \"operator\" tags. (2023/11/08)",
+        "operator": "Bangalore Metro Rail Corporation Limited",
+        "public_transport": "station",
+        "public_transport:version": "2",
+        "railway": "station",
+        "shelter": "yes",
+        "station": "subway",
+        "subway": "yes",
+        "tunnel": "yes",
+        "website": "https://english.brmc.co.in",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6400857556,
+      "lat": 12.9787419,
+      "lon": 77.5916385,
+      "tags": {
+        "code": "VDSA",
+        "name": "Dr. B. R. Ambedkar Station, Vidhana Soudha",
+        "name:kn": "ಡಾ.ಬಿ.ಆರ್. ಅಂಬೇಡ್ಕರ್ ಠಾಣೆ, ವಿಧಾನಸೌಧ",
+        "name:ml": "ഡോ.ബി.ആർ. അംബേദ്കർ സ്റ്റേഷൻ, വിധാന സൗധ",
+        "network": "Namma Metro",
+        "note": "Contributors are requested to not edit the \"network\" and the \"operator\" tags. (2023/11/08)",
+        "operator": "Bangalore Metro Rail Corporation Limited",
+        "public_transport": "station",
+        "public_transport:version": "2",
+        "railway": "station",
+        "ref": "VDSA",
+        "shelter": "yes",
+        "station": "subway",
+        "subway": "yes",
+        "tunnel": "yes",
+        "website": "https://english.brmc.co.in",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6400857557,
+      "lat": 12.9745197,
+      "lon": 77.58422,
+      "tags": {
+        "alt_name": "Central College",
+        "code": "VSWA",
+        "name": "Sir M. Visvesvaraya Stn., Central College",
+        "name:kn": "ಸರ್ ಎಂ ವಿಶ್ವೇಶ್ವರಯ್ಯ - ಸೆಂಟ್ರಲ್ ಕಾಲೇಜು",
+        "name:ml": "സർ എം വിശ്വേശ്വരയ്യ - സെൻട്രൽ കോളേജ്",
+        "network": "Namma Metro",
+        "note": "Contributors are requested to not edit the \"network\" and the \"operator\" tags. (2023/11/08)",
+        "operator": "Bangalore Metro Rail Corporation Limited",
+        "public_transport": "station",
+        "public_transport:version": "2",
+        "railway": "station",
+        "shelter": "yes",
+        "station": "subway",
+        "subway": "yes",
+        "tunnel": "yes",
+        "website": "https://english.brmc.co.in",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6584009929,
+      "lat": 12.9752542,
+      "lon": 77.6066829,
+      "tags": {
+        "name": "C: Brigade Road Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "C",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9140200259,
+      "lat": 12.9749374,
+      "lon": 77.5846674,
+      "tags": {
+        "name": "A: Bangalore University",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "A"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9161059598,
+      "lat": 12.9776274,
+      "lon": 77.5910052,
+      "tags": {
+        "name": "D: Cubbon Park/RBI Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "D"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9296328865,
+      "lat": 12.9735046,
+      "lon": 77.5829576,
+      "tags": {
+        "name": "C: City Civil Court",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "C"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9296328866,
+      "lat": 12.9746281,
+      "lon": 77.5849104,
+      "tags": {
+        "name": "B: Government Arts and Science College",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "B",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9777549158,
+      "lat": 12.9744571,
+      "lon": 77.5847663,
+      "tags": {
+        "emergency": "yes",
+        "name": "Emergency Exit",
+        "note": "Often kept closed",
+        "operator": "BMRCL",
+        "railway": "subway_entrance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10162602109,
+      "lat": 12.9726044,
+      "lon": 77.6171978,
+      "tags": {
+        "highway": "elevator",
+        "name": "C: South Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "C"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10162674833,
+      "lat": 12.9791847,
+      "lon": 77.5923487,
+      "tags": {
+        "highway": "elevator",
+        "name": "C: High Court Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "C"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10162674834,
+      "lat": 12.9776599,
+      "lon": 77.5902757,
+      "tags": {
+        "name": "E: Vikasa Soudha Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "E"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10162674835,
+      "lat": 12.980113,
+      "lon": 77.5926339,
+      "tags": {
+        "name": "A: Vidhana Soudha/Indian Express Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "A",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10162674836,
+      "lat": 12.9794236,
+      "lon": 77.5925717,
+      "tags": {
+        "name": "B: High Court Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "B"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10183537171,
+      "lat": 12.9817513,
+      "lon": 77.5964389,
+      "tags": {
+        "name": "E: Prestige Minsk Square",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "E"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11214889012,
+      "lat": 12.9754943,
+      "lon": 77.6071818,
+      "tags": {
+        "name": "B: Kamaraj Road Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "B",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11215576585,
+      "lat": 12.9756606,
+      "lon": 77.60647,
+      "tags": {
+        "addr:floor": "G",
+        "door": "yes",
+        "level": "0",
+        "name": "A: Kumble Circle Side",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "A",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11408768750,
+      "lat": 12.9738342,
+      "lon": 77.5827644,
+      "tags": {
+        "name": "D: Central College",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "D"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11408768761,
+      "lat": 12.9740883,
+      "lon": 77.5832262,
+      "tags": {
+        "highway": "elevator",
+        "name": "E: Central College",
+        "operator": "BMRCL",
+        "railway": "subway_entrance",
+        "ref": "E",
+        "wheelchair": "yes"
+      }
+    }
+  ]
+}
