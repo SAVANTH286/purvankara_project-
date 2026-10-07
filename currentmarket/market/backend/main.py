@@ -12,6 +12,7 @@ from backend.ml_api import router as ml_router
 from backend.city_api import router as city_router
 from backend.infrastructure_api import router as infra_router
 from backend.scenario_api import router as scenario_router
+from backend.external_router import router as external_router
 from backend.db.ingest import seed_database
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +49,9 @@ app.add_middleware(
 for r in [dss_router, copilot_router, ml_router, city_router, infra_router, scenario_router]:
     app.include_router(r, prefix="/api")
     app.include_router(r)
+
+# External integration API — requires X-API-Key authentication
+app.include_router(external_router)
 
 
 @app.get("/health")
